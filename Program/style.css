@@ -1,0 +1,38 @@
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border: solid 1px black;
+}
+
+#start {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+input {
+    height: 20px;
+}
+
+#cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+img {
+    border: 2px solid black;
+    width: 150px;
+    border-radius: 10%;
+}
+
+#powers {
+    display: flex;
+    gap: 7px;
+    justify-content: center;
+    margin-top: 0.5%;
+    width: 100%;    
+}
