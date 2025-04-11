@@ -9,18 +9,49 @@
 <body>
     <div id="main">
         <h1>OG Brainrot Memory Game</h1>
+        <h2>Select Difficulty:</h2>
+        <div id="difficulties">
+            <button class="difficultyButton" id="easy">10 card</button>
+            <button class="difficultyButton" id="medium">14 card</button>
+            <button class="difficultyButton" id="hard">18 card</button>
+        </div>
         <div id="start">
-            <p>E-Mail: </p>
-            <input type="text">
-            <button id="startButon">Start</button>
+            <div>
+                <p>E-Mail: </p>
+                <input type="text">
+            </div>
+            <div>
+                <p>Kor: </p>
+                <input type="number" min="1" max="99">
+            </div>
+            
+            <button id="startButton">Start</button>
         </div>
         <div id="cards">
-            <img src="Images/datboy.png" alt="datboy">
-            <img src="Images/datboy.png" alt="datboy">
-            <img src="Images/datboy.png" alt="datboy">
-            <img src="Images/datboy.png" alt="datboy">
-            <img src="Images/datboy.png" alt="datboy">
-            <img src="Images/datboy.png" alt="datboy">
+            <div class="card">
+                <div class="front"></div>
+                <div class="back flipped">
+                    <img src="Images/datboy.png" alt="Avatar">
+                </div>
+            </div>
+            <div class="card">
+                <div class="front"></div>
+                <div class="back flipped">
+                    <img src="Images/datboy.png" alt="Avatar">
+                </div>
+            </div>
+            <div class="card">
+                <div class="front"></div>
+                <div class="back flipped">
+                    <img src="Images/datboy.png" alt="Avatar">
+                </div>
+            </div>
+            <div class="card">
+                <div class="front"></div>
+                <div class="back flipped">
+                    <img src="Images/datboy.png" alt="Avatar">
+                </div>
+            </div>
         </div>
         <div id="powers">
             <button class="power" id="power1">Power 1</button>

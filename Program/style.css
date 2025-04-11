@@ -1,26 +1,125 @@
 #main {
     display: flex;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
     
-    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+body {
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: auto;
 }
 
 #start {
     display: flex;
     gap: 10px;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 5%;
-    margin-top: 5%;
+    margin-top: 2%;
+    flex-direction: column;
+}
+
+#start p {
+    display: inline;
 }
 
 input {
-    height: 20px;
     
+    height: 20px;
+    width: 160px;
+    border-radius: 20px ;
+    border: black 2px solid;
 }
 
+input[type="number"] {
+    width: 35px;
+    text-align: right;
+}
 
+#startButton {
+    border-radius: 200px;
+    border: 2px black solid;
+    height: 30px;
+    width: 60px;
+    align-self: center;
+}
+
+#difficulties {
+    display: flex;
+    gap: 5px;
+}
+
+.difficultyButton {
+    font-size: larger;
+    height: 40px;
+    width: 100px;
+    border-radius: 20px;
+}
+
+#easy {
+    background-color:greenyellow;
+    border: 2px solid rgb(134, 199, 36);
+}
+
+#medium {
+    background-color: orange;
+    border: 2px solid rgb(173, 113, 0);
+}
+
+#hard {
+    background-color: red;
+    border: 2px solid rgb(131, 0, 0);
+}
+
+.card {
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    transform-style: preserve-3d; /* 3D animáció */
+}
+
+.card * {
+    outline: 1px solid black;;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 1s;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+.back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden; /* Másik oldal */
+}
+
+.front {
+    position: absolute;
+    inset: 0;
+    background-image: url(Images/illuminati.png);
+    background-size: cover;
+    background-position:  0px;
+    backface-visibility: hidden;
+}
 
 #cards {
     display: flex;
@@ -32,9 +131,7 @@ input {
 }
 
 img {
-    border: 2px solid black;
     width: 150px;
-    border-radius: 10%;
 }
 
 #powers {
