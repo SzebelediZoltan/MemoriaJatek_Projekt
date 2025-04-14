@@ -46,10 +46,11 @@ input {
     width: 160px;
     border-radius: 20px ;
     border: black 2px solid;
+    padding: 6px;
 }
 
 input[type="number"] {
-    width: 35px;
+    width: 40px;
     text-align: right;
 }
 
@@ -63,6 +64,7 @@ input[type="number"] {
 
 #difficulties {
     display: flex;
+    align-items: center;
     gap: 5px;
 }
 
@@ -150,5 +152,9 @@ img {
     height: 60px;
     width: 100px;
     font-size: larger;
-    
+}
+
+.selected {
+    width: 120px;
+    height: 48px;
 }
