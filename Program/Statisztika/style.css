@@ -55,3 +55,36 @@ table tr:nth-child(even) {
 table tr:hover {
     background-color: #ddd;
 }
+
+#back {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: auto;
+    padding: 8px 16px;
+    
+    background-color: #4CAF50; /* zöld */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: sans-serif;
+    
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#back:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+#back:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+

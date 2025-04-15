@@ -1,22 +1,21 @@
 let difficulty;
-const CARDS = ["dabbaby", "datboy", "lean", "oioioi", "orange", "shrek", "skibidi"]
+const CARDS = ["dababby", "datboy", "lean", "oioioi", "orange", "shrek", "skibidi"]
 
 const startButton = document.querySelector("#startButton")
 startButton.addEventListener("click", handleStart)
+
+document.querySelector('#statistics').addEventListener('click', function() {
+    window.location.href = 'Statisztika/index.html'; 
+});
 
 function handleStart() {
     let problems = validData()
     if(!problems.includes(false)) {
         let actCards = generateCards()
-        resetLogIn()
         startGame(actCards)
     } else {
         showNotValid(problems)
     }
-}
-
-function resetLogIn() {
-    
 }
 
 function showNotValid(problems) {
@@ -57,26 +56,54 @@ function validData() {
 function startGame(actCards) {
     document.querySelector("#login").style.display = "none"
     document.querySelector("#game").style.display = "block"
+
+    showCards(actCards)
+
+}
+
+function showCards(actCards) {
+    for (const cardName of actCards) {
+        div.innerHTML += `<div class="card"> <div class="front"></div> <div class="back flipped"> <img src="Images/${cardName}.png" alt="Avatar"> </div> </div>`
+    }
 }
 
 function generateCards() {
     let actCards
     switch (difficulty) {
         case "easy":
-            actCards = CARDS.slice(0, 6)
+            actCards = CARDS.slice(0, 6) +","+ CARDS.slice(0, 6)
             break;
         case "medium":
-            actCards = CARDS.slice(0, 9)
+            actCards = CARDS.slice(0, 9) +","+ CARDS.slice(0, 9)
             break;
         case "hard":
-            actCards = CARDS.slice(0, 12)
+            actCards = CARDS.slice(0, 12) +","+ CARDS.slice(0, 12)
             break;
         default:
             break;
     }
 
+    actCards = actCards.split(",")
+    shuffle(actCards)
+
     return actCards
 }
+
+function shuffle(array) {
+    let currentIndex = array.length;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  }
 
 const dificultyDivs = document.querySelector("#difficulties")
 dificultyDivs.addEventListener("click", handleDificultySelection)
