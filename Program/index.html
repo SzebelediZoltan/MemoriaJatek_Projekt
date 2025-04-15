@@ -7,7 +7,7 @@
     <title>Memory Game</title>
 </head>
 <body>
-    <div id="main">
+    <div class="main" id="login">
         <button id="statistics">Statistics</button>
         <h1>OG Brainrot Memory Game</h1>
         <h2>Select Difficulty:</h2>
@@ -25,9 +25,15 @@
                 <p>Age: </p>
                 <input type="number" min="1" max="99" >
             </div>
+
+            <p id="loginerror">Problem</p>
             
-            <button id="startButton" type="submit">Start</button>
+            <button id="startButton">Start</button>
         </div>
+    </div>
+    <div class="main" id="game">
+        <p>Time: 00:00</p>
+        <p>Moves: 0</p>
         <div id="cards">
             <div class="card">
                 <div class="front"></div>
@@ -55,8 +61,14 @@
             </div>
         </div>
         <div id="powers">
-            <button class="power" id="power1">Power 1</button>
-            <button class="power" id="power2">Power 2</button>
+            <button class="power" id="power1">
+                Domain Expansion
+                <div class="tooltip">Shows the whole board for 3 seconds by flipping all of the cards.</div>
+            </button>
+            <button class="power" id="power2">
+                Unfold The Truth
+                <div class="tooltip">Solves 1 pair for you and removes it from the board.</div>
+            </button>
         </div>
     </div>
     <script src="script.js"></script>

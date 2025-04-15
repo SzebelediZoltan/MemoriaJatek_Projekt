@@ -1,4 +1,4 @@
-#main {
+.main {
     display: flex;
     background-color: #fff;
     padding: 20px;
@@ -11,6 +11,10 @@
     text-align: center;
     overflow: hidden;
     font-family: Arial, sans-serif;
+}
+
+#game {
+    display: none;
 }
 
 #statistics {
@@ -95,6 +99,21 @@ outline: none;
 box-shadow: 0 0 5px #4facfe;
 }
 
+#loginerror {
+    color: red; /* Hibaszöveg színe */
+    font-size: 14px; /* Kis betűméret */
+    font-weight: 600; /* Kiemelt, félkövér betűk */
+    margin-top: -10px; /* Kicsit a mezők fölé tolja */
+    margin-bottom: 10px; /* Kisebb térköz a mező és a gomb között */
+    display: none;
+    padding: 5px;
+    background-color: #ffe6e6; /* Halvány piros háttér */
+    border: 1px solid red; /* Vörös szegély a hibához */
+    border-radius: 8px; /* Kerekített sarkok */
+    text-align: center; /* Középre igazítja a szöveget */
+}
+
+
 /* Gomb stílus */
 #startButton {
 padding: 12px;
@@ -165,6 +184,26 @@ transform: translateY(-2px);
     height: 53px;
 }
 
+/* Az idő és mozgások szövegeinek stílusa */
+#game p {
+    cursor: default;
+    font-family: 'Arial', sans-serif;  /* Modern, jól olvasható betűtípus */
+    font-weight: bold;  /* Vastag betűk */
+    font-size: 2rem;  /* Közepesen nagy betűméret */
+    color: #333;  /* Sötét szürke szín a jobb olvashatóság érdekében */
+    text-align: center;  /* Középre igazítás */
+    margin: 10px 0;  /* Kis távolság a szövegek között */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);  /* Finom árnyék, hogy kiemelje a szöveget */
+}
+
+/* Ha szeretnél kicsit nagyobb hatást, például mozgás közben kiemelni, animálhatod őket */
+#game p:hover {
+    color: #f39c12;  /* Hover esetén narancssárga szín */
+    transform: scale(1.05);  /* Finom nagyítás a hover hatásra */
+    transition: all 0.3s ease;  /* Lassan történő animáció */
+}
+
+
 .card {
     cursor: pointer;
     width: 150px;
@@ -216,7 +255,6 @@ img {
     gap: 40px;
     justify-content: center;
     margin-top: 5%;
-    margin-bottom: 5%;
     width: 100%;    
 }
 
@@ -259,4 +297,28 @@ img {
     background: linear-gradient(145deg, #cccccc, #999999);
     border-color: #bbbbbb;
     color: #666666;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 110%;  /* A tooltip a gomb fölé kerül */
+    left: 50%;
+    transform: translateX(-50%); /* Középre igazítja */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 20px;  /* Szélesebb padding */
+    border-radius: 10px;
+    font-size: 14px;
+    width: 180%;  /* A tooltip szélesebb lesz, mint a gomb */
+    max-width: 300px;  /* Maximális szélesség */
+    visibility: hidden;  /* Alapértelmezetten rejtve van */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 100;
+}
+
+/* A pop-up akkor látható, amikor az egér fölé kerül */
+.power:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
 }
