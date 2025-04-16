@@ -58,12 +58,11 @@ function startGame(actCards) {
     document.querySelector("#game").style.display = "block"
 
     showCards(actCards)
-
 }
 
 function showCards(actCards) {
     for (const cardName of actCards) {
-        div.innerHTML += `<div class="card"> <div class="front"></div> <div class="back flipped"> <img src="Images/${cardName}.png" alt="Avatar"> </div> </div>`
+        div.innerHTML += `<div class="card"> <div class="front"></div> <div class="back flipped"> <img src="Images/${cardName}.png" alt="${cardName}"> </div> </div>`
     }
 }
 
@@ -135,21 +134,37 @@ input.addEventListener("change" , ()=> {
         }
 });
 
+
+function myPromise(e) {
+    new Promise((resolve, reject) => {
+        if (first) {
+            setTimeout(() => {
+                resolve("nem first")
+            }, 1000)
+        }else {
+            setTimeout(() => {
+                resolve("first")
+            }, 1000)
+        }
+    });
+}
+
 const div = document.querySelector("#cards");
 div.addEventListener("click", handleFlip);
 function handleFlip(e) {
     const card = e.target.parentNode;
-    if (card.matches(".card")) {
-        const front = card.children[0];
-        const back = card.children[1];
-        
-        front.classList.add("flipped");
-        back.classList.remove("flipped");
-        setTimeout(() => {
-            back.classList.add("flipped");
-            front.classList.remove("flipped");
-        }, 1000);
+    if (!card.matches(".card")) {
+        return
     }
+    const front = card.children[0];
+    const back = card.children[1];
+    
+    front.classList.add("flipped");
+    back.classList.remove("flipped");
+
+    myPromise
+        .then()
 }
+
 
 
