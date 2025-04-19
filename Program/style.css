@@ -1,55 +1,4 @@
-.main {
-    display: flex;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-    max-width: 800px;
-    text-align: center;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-}
-
-#game {
-    display: none;
-}
-
-#statistics {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: auto;
-    padding: 8px 16px;
-    
-    background-color: #4CAF50; /* zöld */
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    font-family: sans-serif;
-    
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-#statistics:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-#statistics:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-}
-
-
+/* --- Alap stílusok --- */
 body {
     background-color: #f4f4f9;
     margin: 0;
@@ -59,8 +8,25 @@ body {
     align-items: center;
     min-height: 100vh;
     overflow: auto;
+    font-family: Arial, sans-serif;
 }
 
+/* Fő container */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 70vw;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Login szakasz */
 #start {
     background: white;
     padding: 20px;
@@ -68,70 +34,67 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
-  
-/* Egyes mezők */
+}
+
 #start div {
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Címkék (pl. E-Mail, Age) */
 #start p {
-margin: 0 0 5px 0;
-font-weight: 600;
-color: #333;
+    margin: 0 0 5px;
+    font-weight: 600;
+    color: #333;
 }
 
-/* Bemeneti mezők */
 #start input {
-padding: 10px;
-border: 2px solid #ccc;
-border-radius: 10px;
-font-size: 16px;
-transition: 0.3s;
-text-align: right;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: right;
+    transition: 0.3s;
 }
 
 #start input:focus {
-border-color: #4facfe;
-outline: none;
-box-shadow: 0 0 5px #4facfe;
+    border-color: #4facfe;
+    outline: none;
+    box-shadow: 0 0 5px #4facfe;
 }
 
 #loginerror {
-    color: red; /* Hibaszöveg színe */
-    font-size: 14px; /* Kis betűméret */
-    font-weight: 600; /* Kiemelt, félkövér betűk */
-    margin-top: -10px; /* Kicsit a mezők fölé tolja */
-    margin-bottom: 10px; /* Kisebb térköz a mező és a gomb között */
+    color: red;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: -10px;
+    margin-bottom: 10px;
     display: none;
     padding: 5px;
-    background-color: #ffe6e6; /* Halvány piros háttér */
-    border: 1px solid red; /* Vörös szegély a hibához */
-    border-radius: 8px; /* Kerekített sarkok */
-    text-align: center; /* Középre igazítja a szöveget */
+    background-color: #ffe6e6;
+    border: 1px solid red;
+    border-radius: 8px;
+    text-align: center;
 }
 
-
-/* Gomb stílus */
+/* Start gomb */
 #startButton {
-padding: 12px;
-background: #4facfe;
-color: white;
-border: none;
-border-radius: 15px;
-font-size: 16px;
-font-weight: bold;
-cursor: pointer;
-transition: all 0.3s, transform 0.2s;
+    padding: 12px;
+    background: #4facfe;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s, transform 0.2s;
 }
 
 #startButton:hover {
-background: #00c3ff;
-transform: translateY(-2px);
+    background: #00c3ff;
+    transform: translateY(-2px);
 }
 
+/* Nehézségi szintek */
 #difficulties {
     display: flex;
     align-items: center;
@@ -148,7 +111,6 @@ transform: translateY(-2px);
     color: white;
     border: none;
     cursor: pointer;
-
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
@@ -163,7 +125,7 @@ transform: translateY(-2px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Egyedi színezések */
+/* Egyedi színek nehézségekhez */
 #easy {
     background-color: #a4e100;
     border: 2px solid #8bc100;
@@ -184,59 +146,28 @@ transform: translateY(-2px);
     height: 53px;
 }
 
-/* Az idő és mozgások szövegeinek stílusa */
+/* Game szakasz */
+#game {
+    display: none;
+}
+
 #game p {
     cursor: default;
-    font-family: 'Arial', sans-serif;  /* Modern, jól olvasható betűtípus */
-    font-weight: bold;  /* Vastag betűk */
-    font-size: 2rem;  /* Közepesen nagy betűméret */
-    color: #333;  /* Sötét szürke szín a jobb olvashatóság érdekében */
-    text-align: center;  /* Középre igazítás */
-    margin: 10px 0;  /* Kis távolság a szövegek között */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);  /* Finom árnyék, hogy kiemelje a szöveget */
+    font-weight: bold;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin: 10px 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Ha szeretnél kicsit nagyobb hatást, például mozgás közben kiemelni, animálhatod őket */
 #game p:hover {
-    color: #f39c12;  /* Hover esetén narancssárga szín */
-    transform: scale(1.05);  /* Finom nagyítás a hover hatásra */
-    transition: all 0.3s ease;  /* Lassan történő animáció */
+    color: #f39c12;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
 }
 
-
-.card {
-    cursor: pointer;
-    width: 150px;
-    height: 150px;
-    position: relative;
-    transform-style: preserve-3d; /* 3D animáció */
-}
-
-.card * {
-    outline: 1px solid black;;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: transform 1s;
-}
-
-.flipped {
-    transform: rotateY(180deg);
-}
-
-.back {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden; /* Másik oldal */
-}
-
-.front {
-    position: absolute;
-    inset: 0;
-    background-image: url(Images/illuminati.png);
-    background-size: cover;
-    background-position:  0px;
-    backface-visibility: hidden;
-}
-
+/* Kártyák */
 #cards {
     display: flex;
     justify-content: center;
@@ -246,16 +177,47 @@ transform: translateY(-2px);
     gap: 15px;
 }
 
+.card {
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.card * {
+    outline: 1px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 1s;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+}
+
+.front {
+    background-image: url(Images/illuminati.png);
+    background-size: cover;
+    background-position: 0px;
+}
+
 img {
     width: 150px;
 }
 
+/* Power gombok */
 #powers {
     display: flex;
     gap: 40px;
     justify-content: center;
     margin-top: 5%;
-    width: 100%;    
+    width: 100%;
 }
 
 .power {
@@ -264,29 +226,23 @@ img {
     background: linear-gradient(145deg, #fff700, #ffd000);
     height: 60px;
     width: 120px;
-
     font-size: 16px;
     font-weight: bold;
     color: #333;
     font-family: 'Segoe UI', sans-serif;
-
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15),
-                inset 0 0 5px rgba(255, 255, 255, 0.6);
-    
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), inset 0 0 5px rgba(255, 255, 255, 0.6);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .power:hover {
     transform: scale(1.05) rotate(-1deg);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25),
-                inset 0 0 8px rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25), inset 0 0 8px rgba(255, 255, 255, 0.7);
 }
 
 .power:active {
     transform: scale(0.98);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
-                inset 0 0 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 0 4px rgba(0, 0, 0, 0.3);
 }
 
 .power:disabled {
@@ -299,26 +255,122 @@ img {
     color: #666666;
 }
 
+/* Tooltip (infó buborék) */
 .tooltip {
     position: absolute;
-    bottom: 110%;  /* A tooltip a gomb fölé kerül */
+    bottom: 110%;
     left: 50%;
-    transform: translateX(-50%); /* Középre igazítja */
+    transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 12px 20px;  /* Szélesebb padding */
+    padding: 12px 20px;
     border-radius: 10px;
     font-size: 14px;
-    width: 180%;  /* A tooltip szélesebb lesz, mint a gomb */
-    max-width: 300px;  /* Maximális szélesség */
-    visibility: hidden;  /* Alapértelmezetten rejtve van */
+    width: 180%;
+    max-width: 300px;
+    visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 100;
 }
 
-/* A pop-up akkor látható, amikor az egér fölé kerül */
 .power:hover .tooltip {
     visibility: visible;
     opacity: 1;
+}
+
+/* Győzelmi képernyő */
+#win {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 50vw;
+    animation: popIn 0.6s ease forwards;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+#win h2 {
+    font-size: 2.5rem;
+    color: #27ae60;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+#win p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+#playAgain {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+#playAgain:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+#playAgain:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Statisztika gomb */
+#statistics {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: sans-serif;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#statistics:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+#statistics:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
