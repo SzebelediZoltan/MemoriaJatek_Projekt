@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Memory Game - Statistics</title>
 </head>
 <body>
+    <!-- Game gomb: abszolút pozíció a bal felső sarokban -->
+    <button id="Game">Game</button>
+
     <div class="main">
-        <button id="back">Back</button>
-        <h2>OG Brainrot Memory Game - Statistics</h2>
-        <table>
-            <tr>
-                <th>E-Mail</th>
-                <th>Points</th>
-                <th>Date</th>
-            </tr>
-            <tr>
-                <td>
-                    szebe99@gmail.com
-                </td>
-                <td>
-                    101
-                </td>
-                <td>
-                    2024-04-11 15:30
-                </td>
-            </tr>
-            
+        <!-- Reset gomb -->
+        <button id="reset">Reset</button>
+
+        <div id="Texts">
+            <h2>OG Brainrot Memory Game - Statistics</h2>
+            <h3 id="storageType" style="display: none;"></h3>
+        </div>
+
+        <!-- Tárolás típus választó gombok -->
+        <div id="storageButtons">
+            <button class="storageChoosing" id="local">LocalStorage</button>
+            <button class="storageChoosing" id="global">Global</button>
+        </div>
+
+        <!-- Nehézség választó gombok (csak global esetén jelenik meg) -->
+        <div id="difficultyButtons" style="display: none;">
+            <button class="difficulty" data-diff="easy">Easy</button>
+            <button class="difficulty" data-diff="medium">Medium</button>
+            <button class="difficulty" data-diff="hard">Hard</button>
+        </div>
+
+        <!-- Statisztika tábla -->
+        <table id="statTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>E-Mail</th>
+                    <th>Points</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dinamikus sorok ide kerülnek -->
+            </tbody>
         </table>
     </div>
 
