@@ -34,51 +34,24 @@ power1Button.addEventListener("click", handlePower1);
 power2Button.addEventListener("click", handleRandomPick);
 playAgainButton.addEventListener("click", reset);
 
-// --- Játék újraindítása ---
-function reset() {
-    if (difficulty) document.querySelector(`#${difficulty}`).classList.remove("selected");
-
-    difficulty = null;
-    mistakes = 0;
-
-    document.querySelector("#win").style.display = "none";
-    document.querySelector("#game").style.display = "none";
-    document.querySelector("#login").style.display = "flex";
-    loginError.style.display = "none";
-
-    emailInput.value = "";
-    ageInput.value = "";
-
-    power1Button.disabled = false;
-    power2Button.disabled = false;
-}
-
-// --- Véletlen egész szám generálása ---
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// --- Életkor input validálása ---
+// --- Input validálás és kiválasztás ---
 function validateAgeInput() {
     const value = parseInt(ageInput.value);
     if (isNaN(value)) ageInput.value = "";
     else ageInput.value = Math.min(Math.max(value, 1), 99);
 }
 
-// --- Nehézségi szint kiválasztása ---
 function handleDifficultySelection(e) {
     const button = e.target;
     if (!button.matches(".difficultyButton")) return;
-
     if (difficulty) document.querySelector(`#${difficulty}`).classList.remove("selected");
     button.classList.add("selected");
     difficulty = button.id;
 }
 
-// --- Indítás gomb kezelése ---
+// --- Játék indítása ---
 function handleStart() {
     const [isEmailValid, isAgeValid, isDifficultySelected] = validateData();
-
     if (isEmailValid && isAgeValid && isDifficultySelected) {
         const cards = generateCards();
         startGame(cards);
@@ -87,27 +60,23 @@ function handleStart() {
     }
 }
 
-// --- Adatok ellenőrzése ---
 function validateData() {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const email = emailInput.value;
     const age = parseInt(ageInput.value);
-
     return [emailPattern.test(email), age >= 1 && age <= 99, difficulty !== null];
 }
 
-// --- Hibák megjelenítése ---
 function showLoginError([emailValid, ageValid, difficultySelected]) {
     let errorMessage = "Unknown error";
     if (!difficultySelected) errorMessage = "Select a difficulty";
     else if (!emailValid) errorMessage = "Give us a real email address";
     else if (!ageValid) errorMessage = "Give us a correct age (1 - 99)";
-
     loginError.innerText = errorMessage;
     loginError.style.display = "block";
 }
 
-// --- Kártyák generálása ---
+// --- Játék előkészítése ---
 function generateCards() {
     let count;
     switch (difficulty) {
@@ -120,7 +89,6 @@ function generateCards() {
     return selected;
 }
 
-// --- Kártyák keverése ---
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -128,7 +96,7 @@ function shuffle(array) {
     }
 }
 
-// --- Játék indítása ---
+// --- Játék kezdete ---
 function startGame(cards) {
     document.querySelector("#login").style.display = "none";
     document.querySelector("#game").style.display = "block";
@@ -137,8 +105,9 @@ function startGame(cards) {
     startTime = Date.now();
     updateTimer();
     setTimeout(() => {
-        intervalID = setInterval(updateTimer, 1000);
-    }, 3000)
+        startTime = Date.now();
+        intervalID = setInterval(updateTimer, 1000)
+    }, 3000);
 }
 
 function updateTimer() {
@@ -152,7 +121,11 @@ function getTime() {
     return `${mins}:${secs}`;
 }
 
-// --- Kártyák megjelenítése ---
+function getSeconds() {
+    return Math.floor((Date.now() - startTime) / 1000).toString();
+}
+
+// --- Kártyakezelés ---
 function showCards(cards) {
     cardsContainer.innerHTML = cards.map(name => `
         <div class="card">
@@ -164,49 +137,35 @@ function showCards(cards) {
     handleAllFlip();
 }
 
-// --- Kártya kattintás kezelése ---
 function handleFlip(e) {
     const card = e.target.closest(".card");
     if (!card || card.children[0].classList.contains("flipped")) return;
 
     flipCard(card);
-
     flipping = true;
+
     if (!firstCard) {
         firstCard = card;
     } else {
-        cardsContainer.removeEventListener("click", handleFlip);     
+        cardsContainer.removeEventListener("click", handleFlip);
         compareCards(card)
             .then(() => cardMatch(card))
             .catch(() => cardMismatch(card));
     }
 }
 
-// --- Lépésszámláló frissítése ---
-function updateMistakes() {
-    document.querySelector("#game").children[1].innerText = "Mistakes: " + mistakes;
-}
-
-// --- Kártya megfordítása ---
 function flipCard(card) {
     if (!card) return;
     card.children[0].classList.toggle("flipped");
     card.children[1].classList.toggle("flipped");
 }
 
-// --- Két kártya összehasonlítása ---
 function compareCards(card) {
     return new Promise((resolve, reject) => {
-        flipping = true;
-        
         setTimeout(() => {
             const img1 = card.children[1].children[0].src;
             const img2 = firstCard.children[1].children[0].src;
-            if (img1 == img2) {
-                resolve()
-            } else {
-                reject()
-            }
+            img1 === img2 ? resolve() : reject();
         }, 1000);
     });
 }
@@ -226,13 +185,16 @@ function cardMismatch(card) {
         flipCard(card);
         firstCard = null;
         flipping = false;
-        mistakes++
-        updateMistakes()
+        mistakes++;
+        updateMistakes();
         cardsContainer.addEventListener("click", handleFlip);
     }, 1000);
 }
 
-// --- Játék vége ellenőrzése ---
+function updateMistakes() {
+    document.querySelector("#game").children[1].innerText = "Mistakes: " + mistakes;
+}
+
 function checkWin() {
     const allHidden = Array.from(cardsContainer.children).every(c => c.style.visibility === "hidden");
     if (allHidden) handleWin();
@@ -242,91 +204,16 @@ function handleWin() {
     document.querySelector("#win").style.display = "flex";
     clearInterval(intervalID);
     document.querySelector("#win").children[1].innerText = `You have won our game in ${getTime()} and with ${mistakes} mistakes`;
-    
-    pushToLocal()
-    pushToGlobal()
+    pushToLocal();
+    pushToGlobal();
 }
 
-function pushToLocal() {
-    let datas = JSON.parse(localStorage.getItem("datas"))
-    let today = new Date()
-    
-    if(!datas) {
-        datas = []
-    }
-    
-    let data = {
-        email: emailInput.value,
-        age: ageInput.value,
-        level: difficulty,
-        time: getTime(),
-        mistakes: mistakes,
-        date: `${today.getFullYear()}.${today.getMonth()}.${today.getDay()}`
-    }
-    
-    console.log("asd");
-    console.log(data);
-
-    datas.push(data)
-
-    console.log(datas);
-    
-
-    localStorage.setItem("datas", JSON.stringify(datas))
+// --- Véletlen egész szám generálása ---
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-async function pushToGlobal() {
-    let postData = {
-        "email": emailInput.value,
-        "age": parseInt(ageInput.value),
-        "level": difficulty,
-        "time": Math.floor((Date.now()-startTime) / 1000),
-        "mistakes": mistakes
-    }
-
-    const OPTIONS = {
-        method: "POST",
-        body: JSON.stringify(postData)
-    }
-
-    const response = await fetch(`http://localhost/memory/create/`, OPTIONS);
-    const data = await response.json()
-    console.log(data);
-    
-}
-
-// --- Power 2: Véletlenszerű pár felfedése ---
-function handleRandomPick() {
-    if (flipping) return;
-    const src = pickValidRandomSrc();
-    doRandomPick(src);
-    power2Button.disabled = true;
-}
-
-function doRandomPick(src) {
-    const picked = [];
-    flipping = true;
-
-    for (const card of cardsContainer.children) {
-        if (card.children[1].children[0].src === src) {
-            flipCard(card);
-            picked.push(card);
-        }
-    }
-
-    setTimeout(() => {
-        for (const card of picked) card.style.visibility = "hidden";
-        checkWin();
-        flipping = false;
-    }, 2000);
-}
-
-function pickValidRandomSrc() {
-    const available = Array.from(cardsContainer.children).filter(c => c.style.visibility !== "hidden");
-    return available[getRndInteger(0, available.length - 1)].children[1].children[0].src;
-}
-
-// --- Power 1: Összes kártya felfedése pár másodpercre ---
+// --- Power Up funkciók ---
 function handlePower1() {
     if (!flipping) {
         handleAllFlip();
@@ -347,4 +234,86 @@ function flipAll() {
     for (const card of cardsContainer.children) {
         flipCard(card);
     }
+}
+
+function handleRandomPick() {
+    if (flipping) return;
+    const src = pickValidRandomSrc();
+    doRandomPick(src);
+    power2Button.disabled = true;
+}
+
+function pickValidRandomSrc() {
+    const available = Array.from(cardsContainer.children).filter(c => c.style.visibility !== "hidden");
+    return available[getRndInteger(0, available.length - 1)].children[1].children[0].src;
+}
+
+function doRandomPick(src) {
+    const picked = [];
+    flipping = true;
+
+    for (const card of cardsContainer.children) {
+        if (card.children[1].children[0].src === src) {
+            flipCard(card);
+            picked.push(card);
+        }
+    }
+
+    setTimeout(() => {
+        for (const card of picked) card.style.visibility = "hidden";
+        checkWin();
+        flipping = false;
+    }, 2000);
+}
+
+// --- Adatok mentése ---
+function pushToLocal() {
+    let datas = JSON.parse(localStorage.getItem("datas")) || [];
+    const today = new Date();
+    const data = {
+        email: emailInput.value,
+        age: ageInput.value,
+        chosen_level: difficulty,
+        playtime: parseInt(getSeconds()),
+        mistakes: mistakes,
+        created_at: `${today.getFullYear()}-${today.getMonth()}-${today.getDay()}`
+    };
+    datas.push(data);
+    localStorage.setItem("datas", JSON.stringify(datas));
+}
+
+async function pushToGlobal() {
+    const postData = {
+        email: emailInput.value,
+        age: parseInt(ageInput.value),
+        level: difficulty,
+        time: parseInt(getSeconds()),
+        mistakes: mistakes
+    };
+    const OPTIONS = {
+        method: "POST",
+        body: JSON.stringify(postData)
+    };
+    const response = await fetch(`http://localhost/memory/create/`, OPTIONS);
+    const data = await response.json();
+}
+
+// --- Újraindítás ---
+function reset() {
+    if (difficulty) document.querySelector(`#${difficulty}`).classList.remove("selected");
+
+    difficulty = null;
+    mistakes = 0;
+    firstCard = null;
+
+    document.querySelector("#win").style.display = "none";
+    document.querySelector("#game").style.display = "none";
+    document.querySelector("#login").style.display = "flex";
+    loginError.style.display = "none";
+
+    emailInput.value = "";
+    ageInput.value = "";
+
+    power1Button.disabled = false;
+    power2Button.disabled = false;
 }

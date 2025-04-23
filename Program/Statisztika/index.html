@@ -7,42 +7,41 @@
     <title>Memory Game - Statistics</title>
 </head>
 <body>
-    <!-- Game gomb: abszolút pozíció a bal felső sarokban -->
     <button id="Game">Game</button>
 
     <div class="main">
-        <!-- Reset gomb -->
-        <button id="reset">Reset</button>
-
         <div id="Texts">
             <h2>OG Brainrot Memory Game - Statistics</h2>
             <h3 id="storageType" style="display: none;"></h3>
         </div>
 
-        <!-- Tárolás típus választó gombok -->
         <div id="storageButtons">
             <button class="storageChoosing" id="local">LocalStorage</button>
             <button class="storageChoosing" id="global">Global</button>
         </div>
 
-        <!-- Nehézség választó gombok (csak global esetén jelenik meg) -->
         <div id="difficultyButtons" style="display: none;">
             <button class="difficulty" data-diff="easy">Easy</button>
             <button class="difficulty" data-diff="medium">Medium</button>
             <button class="difficulty" data-diff="hard">Hard</button>
         </div>
 
-        <!-- Statisztika tábla -->
+        <div id="emailFilterContainer" style="display: none;">
+            <label for="emailFilter">Filter by Email:</label>
+            <input type="email" id="emailFilter" placeholder="Type email to filter..." />
+        </div>
         <table id="statTable" style="display: none;">
             <thead>
                 <tr>
                     <th>E-Mail</th>
-                    <th>Points</th>
+                    <th>Age</th>
+                    <th>Difficulty</th>
+                    <th>Time</th>
+                    <th>Mistakes</th>
                     <th>Date</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Dinamikus sorok ide kerülnek -->
             </tbody>
         </table>
     </div>

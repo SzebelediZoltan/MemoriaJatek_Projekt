@@ -1,4 +1,4 @@
-/* Reset alapstílusok */
+/* --- Alap stílusok, reset és test beállítások --- */
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +15,7 @@ body {
     position: relative;
 }
 
-/* Game gomb külön kezelve: abszolút bal felső sarok */
+/* --- Game gomb a bal felső sarokban --- */
 #Game {
     position: absolute;
     top: 1rem;
@@ -35,6 +35,7 @@ body {
     background-color: #1e7e34;
 }
 
+/* --- Fő konténer --- */
 .main {
     background-color: #fff;
     padding: 2rem;
@@ -47,7 +48,7 @@ body {
     align-items: center;
 }
 
-/* Általános gombstílusok */
+/* --- Általános gombstílus --- */
 button {
     padding: 0.5rem 1rem;
     margin: 0.5rem;
@@ -58,30 +59,20 @@ button {
     transition: background-color 0.3s ease;
 }
 
-#reset {
-    align-self: flex-start;
-    background-color: #dc3545;
-    color: #fff;
-}
-
-#reset:hover {
-    background-color: #bd2130;
-}
-
+/* --- Storage választó gombok --- */
 .storageChoosing {
     background-color: #007bff;
     color: white;
 }
-
 .storageChoosing:hover {
     background-color: #0056b3;
 }
 
+/* --- Nehézségi szint gombok --- */
 .difficulty {
     background-color: #6c757d;
     color: white;
 }
-
 .difficulty:hover {
     background-color: #5a6268;
 }
@@ -93,11 +84,13 @@ button {
     gap: 0.5rem;
 }
 
+/* --- Címek stílusa --- */
 h2, h3 {
     text-align: center;
     margin: 0.5rem 0;
 }
 
+/* --- Statisztikai táblázat --- */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -113,4 +106,43 @@ th, td {
 
 th {
     background-color: #f8f9fa;
+}
+
+/* --- Email szűrő konténer és mező --- */
+#emailFilterContainer {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+#emailFilterContainer label {
+    font-weight: bold;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+#emailFilter {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#emailFilter:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* --- Belépő animáció az email szűrőnek --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }

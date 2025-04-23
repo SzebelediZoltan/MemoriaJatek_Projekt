@@ -11,7 +11,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Fő container */
+/* --- Fő container --- */
 .main {
     display: flex;
     flex-direction: column;
@@ -26,7 +26,7 @@ body {
     overflow: hidden;
 }
 
-/* Login szakasz */
+/* --- Bejelentkezési szakasz --- */
 #start {
     background: white;
     padding: 20px;
@@ -76,7 +76,7 @@ body {
     text-align: center;
 }
 
-/* Start gomb */
+/* --- Start gomb --- */
 #startButton {
     padding: 12px;
     background: #4facfe;
@@ -94,7 +94,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Nehézségi szintek */
+/* --- Nehézségi szintek --- */
 #difficulties {
     display: flex;
     align-items: center;
@@ -125,7 +125,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Egyedi színek nehézségekhez */
+/* --- Egyedi színek nehézségekhez --- */
 #easy {
     background-color: #a4e100;
     border: 2px solid #8bc100;
@@ -146,7 +146,7 @@ body {
     height: 53px;
 }
 
-/* Game szakasz */
+/* --- Játék szakasz --- */
 #game {
     display: none;
 }
@@ -167,7 +167,7 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Kártyák */
+/* --- Kártyák megjelenése --- */
 #cards {
     display: flex;
     justify-content: center;
@@ -211,7 +211,7 @@ img {
     width: 150px;
 }
 
-/* Power gombok */
+/* --- Power gombok --- */
 #powers {
     display: flex;
     gap: 40px;
@@ -255,7 +255,7 @@ img {
     color: #666666;
 }
 
-/* Tooltip (infó buborék) */
+/* --- Tooltip (infó buborék) --- */
 .tooltip {
     position: absolute;
     bottom: 110%;
@@ -279,7 +279,7 @@ img {
     opacity: 1;
 }
 
-/* Győzelmi képernyő */
+/* --- Győzelmi képernyő --- */
 #win {
     position: absolute;
     top: 50%;
@@ -346,7 +346,7 @@ img {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Statisztika gomb */
+/* --- Statisztika gomb --- */
 #statistics {
     position: absolute;
     top: 5px;
