@@ -80,7 +80,7 @@ function showLoginError([emailValid, ageValid, difficultySelected]) {
 function generateCards() {
     let count;
     switch (difficulty) {
-        case "easy": count = 2; break;
+        case "easy": count = 6; break;
         case "medium": count = 9; break;
         case "hard": count = 12; break;
     }
