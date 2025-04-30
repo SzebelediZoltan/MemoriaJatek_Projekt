@@ -100,6 +100,7 @@ function showLocal(level) {
 
 // --- GlobalStorage statisztikák megjelenítése ---
 async function showGlobal(level) {
+    statTableBody.innerHTML = "";
     try {
         const response = await fetch(`http://localhost/memory/index.php?level=${level}`);
         let data = await response.json();
@@ -125,7 +126,7 @@ function sortData(data) {
 
 // --- Táblázat feltöltése adatokkal ---
 function addToTable(data) {
-    statTableBody.innerHTML = "";
+    
     data.forEach(entry => {
         const row = document.createElement("tr");
         row.innerHTML = `
